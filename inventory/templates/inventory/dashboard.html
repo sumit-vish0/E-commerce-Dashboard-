@@ -1,0 +1,18 @@
+{% extends 'inventory/base.html' %}
+{% block content %}
+<h3>Dashboard Overview</h3>
+<div class="row mt-4">
+<div class="col-md-4"><div class="stat-card"><small>TOTAL PRODUCTS</small><h1>{{ total_products }}</h1></div></div>
+<div class="col-md-4"><div class="stat-card"><small>TOTAL QUANTITY</small><h1>{{ total_quantity }}</h1></div></div>
+<div class="col-md-4"><div class="stat-card"><small>ESTIMATED REVENUE</small><h1>₹{{ revenue }}</h1></div></div>
+</div>
+<div class="table-box">
+<h5>Recent Products</h5>
+<table class="table"><thead><tr><th>#</th><th>Name</th><th>Category</th><th>Price</th><th>Qty</th><th>Supplier</th><th>Date</th></tr></thead>
+<tbody>
+{% for p in products %}
+<tr><td>{{ forloop.counter }}</td><td>{{ p.name }}</td><td>{{ p.category }}</td><td>₹{{ p.price }}</td><td>{{ p.quantity }}</td><td>{{ p.supplier }}</td><td>{{ p.added_date }}</td></tr>
+{% empty %}<tr><td colspan="7" class="text-center text-muted">Inventory is empty. Add items to track them.</td></tr>{% endfor %}
+</tbody></table>
+</div>
+{% endblock %}
